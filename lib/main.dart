@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/user_providers.dart';
+import 'screens/login_signup/login_page.dart';
 import 'utils/colors.dart';
 
 Future<void> main() async {
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Meet Pet',
+        title: 'Sustainable Swap',
         theme: ThemeData(
           primarySwatch: MaterialColor(0xff2e71e5, color),
         ),
@@ -96,7 +97,7 @@ class MyApp extends StatelessWidget {
               );
             }
 
-            // return const LoginPage();
+            return const LoginPage();
           },
         ),
       ),
