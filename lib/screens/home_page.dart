@@ -14,6 +14,10 @@ import '../resources/firestore_methods.dart';
 import '../utils/colors.dart';
 import '../models/user.dart' as model;
 import '../widgets/menu_screen.dart';
+import 'add_item.dart';
+import 'donated_item_screen.dart';
+import 'favorite_items.dart';
+import 'notification_page.dart';
 
 int menuItemSelected = 1;
 final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
@@ -61,42 +65,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget currentScreen(model.User cUser) {
-    // if (menuItemSelected == 1) {
-    //   return DonatedItemScreen(
-    //     cUser: cUser,
-    //   );
-    // } else if (menuItemSelected == 2) {
-    //   return AddItem(
-    //     cUser: cUser,
-    //     setIndex: (index) {
-    //       setState(() {
-    //         menuItemSelected = index;
-    //       });
-    //     },
-    //   );
-    // } else if (menuItemSelected == 3) {
-    //   // return const FavoriteScreen();
-    //   return FavoriteItemScreen(
-    //     cUser: cUser,
-    //     listType: 'Favorite Items',
-    //   );
-    // } else if (menuItemSelected == 4) {
-    //   return NotificationPage(
-    //     cUser: cUser,
-    //   );
-    // } else if (menuItemSelected == 5) {
-    //   return AllChats(
-    //     cUser: cUser,
-    //   );
-    // } else if (menuItemSelected == 6) {
-    //   return UserProfile(
-    //     cUser: cUser,
-    //   );
-    // }
-    // return DonatItemScreen(
-    //   cUser: cUser,
-    // );
-    return UserProfile( cUser: cUser,);
+    if (menuItemSelected == 1) {
+      return DonatedItemScreen(
+        cUser: cUser,
+      );
+    } else if (menuItemSelected == 2) {
+      return AddItem(
+        cUser: cUser,
+        setIndex: (index) {
+          setState(() {
+            menuItemSelected = index;
+          });
+        },
+      );
+    } else if (menuItemSelected == 3) {
+      // return const FavoriteScreen();
+      return FavoriteItemScreen(
+        cUser: cUser,
+        listType: 'Favorite Items',
+      );
+    } else if (menuItemSelected == 4) {
+      return NotificationPage(
+        cUser: cUser,
+      );
+    } else if (menuItemSelected == 5) {
+      return UserProfile(
+        cUser: cUser,
+      );
+    }
+    return DonatedItemScreen(
+      cUser: cUser,
+    );
   }
 
   @override

@@ -202,7 +202,8 @@ class _ItemDescriptionState extends State<ItemDescription> {
                       left: 20,
                       bottom: 20,
                       child: Row(
-                        children: widget.citem.imgs.asMap().entries.map((entry) {
+                        children:
+                            widget.citem.imgs.asMap().entries.map((entry) {
                           return GestureDetector(
                             onTap: () => _controller.animateToPage(entry.key),
                             child: Container(
@@ -244,50 +245,6 @@ class _ItemDescriptionState extends State<ItemDescription> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    widget.citem.name,
-                                    textScaleFactor: 1.5,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: black,
-                                    ),
-                                  ),
-                                  Icon(
-                                    widget.citem.gender == "M"
-                                        ? Icons.male
-                                        : Icons.female,
-                                    color: black,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    widget.citem.breed +
-                                        " - " +
-                                        widget.citem.type,
-                                    style: TextStyle(
-                                      color: black,
-                                    ),
-                                  ),
-                                  Text(
-                                    widget.citem.age.toString() + " years old",
-                                    style: TextStyle(
-                                      color: black,
-                                    ),
-                                  ),
-                                ],
-                              ),
                               SizedBox(
                                 height: 5,
                               ),

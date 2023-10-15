@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -118,9 +119,9 @@ class _SignUpPageState extends State<SignUpPage> {
     if (res == 'success') {
       gotoHome();
     } else {
-      // showSnackBar(res, context);
+       ScaffoldMessenger.of(context).showSnackBar(
+          showCustomSnackBar(ctype: ContentType.failure, message: res));
     }
-    gotoHome();
   }
 
   void openLoginPage() {

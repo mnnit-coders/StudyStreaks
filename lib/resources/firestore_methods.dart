@@ -16,10 +16,8 @@ class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<String> uploadItem({
-    required double age,
-    required String breed,
+    required double time_used,
     required String desc,
-    required String gender,
     required List<XFile> imgs,
     // required List<String> imgs,
     required GeoPoint location,
@@ -32,7 +30,7 @@ class FireStoreMethods {
     required String country,
     required int zipCode,
   }) async {
-    // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state management
+    // asking uid here because we dont want to make extra calls to firebase auth when we can just get from our state mantime_usedment
     String res = "Some error occurred";
     try {
       print(1);
@@ -40,8 +38,8 @@ class FireStoreMethods {
       for (var itemPhoto in imgs) {
         Uint8List photo = await itemPhoto.readAsBytes();
 
-        String photoUrl = await StorageMethods()
-            .uploadImageToStorage(childName: 'items', file: photo, isItem: true);
+        String photoUrl = await StorageMethods().uploadImageToStorage(
+            childName: 'items', file: photo, isItem: true);
 
         photoUrls.add(photoUrl);
       }
@@ -55,11 +53,9 @@ class FireStoreMethods {
             state: state,
             country: country,
             zipCode: zipCode),
-        age: age,
-        breed: breed,
+        time_used: time_used,
         datePosted: DateTime.now(),
         desc: desc,
-        gender: gender,
         imgs: photoUrls,
         name: name,
         oldOwner: oldOwner,
@@ -160,11 +156,11 @@ class FireStoreMethods {
           country: item["address"]["country"],
           zipCode: item["address"]["zipCode"],
         ),
-        age: (item["age"] * 1.0), //problem
-        breed: item["breed"],
+        time_used: (item["time_used"] * 1.0), //problem
+
         datePosted: item["datePosted"].toDate(), //problem
         desc: item["desc"],
-        gender: item["gender"],
+
         imgs: item["imgs"], // problem
         name: item["name"],
         oldOwner: item["oldOwner"],
@@ -195,10 +191,10 @@ class FireStoreMethods {
     Map<String, dynamic> item = itemSnap.data()!;
 
     Item curItem = Item(
-      age: (item["age"] * 1.0),
-      breed: item["breed"],
+      time_used: (item["time_used"] * 1.0),
+
       desc: item["desc"],
-      gender: item["gender"],
+
       imgs: item["imgs"], // problem
       name: item["name"],
       oldOwner: item["oldOwner"],
@@ -222,8 +218,11 @@ class FireStoreMethods {
       String itemListType, List<dynamic> itemIdList) async {
     List<Item> itemList = [];
     for (var p in itemIdList) {
-      DocumentSnapshot<Map<String, dynamic>> itemSnap =
-          await FirebaseFirestore.instance.collection(itemListType).doc(p).get();
+      DocumentSnapshot<Map<String, dynamic>> itemSnap = await FirebaseFirestore
+          .instance
+          .collection(itemListType)
+          .doc(p)
+          .get();
 
       if (itemSnap.data() == null) {
         itemSnap = await FirebaseFirestore.instance
@@ -234,10 +233,10 @@ class FireStoreMethods {
 
       Map<String, dynamic> item = itemSnap.data()!;
       Item curItem = Item(
-        age: (item["age"] * 1.0),
-        breed: item["breed"],
+        time_used: (item["time_used"] * 1.0),
+
         desc: item["desc"],
-        gender: item["gender"],
+
         imgs: item["imgs"], // problem
         name: item["name"],
         oldOwner: item["oldOwner"],

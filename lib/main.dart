@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+
+import './screens/home_page.dart';
 import 'providers/user_providers.dart';
 import 'screens/login_signup/login_page.dart';
 import 'utils/colors.dart';
@@ -83,7 +85,7 @@ class MyApp extends StatelessWidget {
 
               if (snapshot.hasData) {
                 // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
-                // return const HomePage();
+                return const HomePage();
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('${snapshot.error}'),

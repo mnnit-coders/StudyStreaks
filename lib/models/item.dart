@@ -7,11 +7,9 @@ import 'address.dart';
 import 'user.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class  Item{
-  double age;
-  String breed;
+class Item {
+  double time_used;
   String desc;
-  String gender;
   List<dynamic> imgs;
   String name;
   String oldOwner;
@@ -24,10 +22,8 @@ class  Item{
   double distance = 0;
   Address address;
   Item({
-    required this.age,
-    required this.breed,
+    required this.time_used,
     required this.desc,
-    required this.gender,
     required this.imgs,
     required this.name,
     required this.oldOwner,
@@ -53,10 +49,8 @@ class  Item{
     Address? address,
   }) {
     return Item(
-      age: age ?? this.age,
-      breed: breed ?? this.breed,
+      time_used: time_used ?? this.time_used,
       desc: desc ?? this.desc,
-      gender: gender ?? this.gender,
       imgs: imgs ?? this.imgs,
       name: name ?? this.name,
       oldOwner: oldOwner ?? this.oldOwner,
@@ -70,11 +64,9 @@ class  Item{
 
   Item.dummy()
       : this(
-          age: 2.0,
-          breed: 'Labrador',
+          time_used: 2.0,
           desc:
               "Everything is so expensive.Going to a bar is a fun thing to do.Here's my big brother. Doesn't he look good?",
-          gender: 'M',
           imgs: [
             "assets/images/dumbdog.jpg",
           ],
@@ -95,10 +87,8 @@ class  Item{
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'age': age,
-      'breed': breed,
+      'time_used': time_used,
       'desc': desc,
-      'gender': gender,
       'imgs': imgs,
       'name': name,
       'oldOwner': oldOwner,
@@ -112,10 +102,8 @@ class  Item{
 
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
-      age: map['age'] as double,
-      breed: map['breed'] as String,
+      time_used: map['time_used'] as double,
       desc: map['desc'] as String,
-      gender: map['gender'] as String,
       name: map['name'] as String,
       oldOwner: map['oldOwner'] as String,
       oldOwnerUID: map['oldOwnerUID'] as String,
@@ -134,17 +122,15 @@ class  Item{
 
   @override
   String toString() {
-    return 'Item(age: $age, breed: $breed, desc: $desc, gender: $gender, imgs: $imgs, name: $name, oldOwner: $oldOwner, oldOwnerUID: $oldOwnerUID, itemId: $itemId, type: $type, datePosted: $datePosted, address: $address)';
+    return 'Item(time used: $time_used, desc: $desc, imgs: $imgs, name: $name, oldOwner: $oldOwner, oldOwnerUID: $oldOwnerUID, itemId: $itemId, type: $type, datePosted: $datePosted, address: $address)';
   }
 
   @override
   bool operator ==(covariant Item other) {
     if (identical(this, other)) return true;
 
-    return other.age == age &&
-        other.breed == breed &&
+    return other.time_used == time_used &&
         other.desc == desc &&
-        other.gender == gender &&
         listEquals(other.imgs, imgs) &&
         other.name == name &&
         other.oldOwner == oldOwner &&
@@ -157,10 +143,8 @@ class  Item{
 
   @override
   int get hashCode {
-    return age.hashCode ^
-        breed.hashCode ^
+    return time_used.hashCode ^
         desc.hashCode ^
-        gender.hashCode ^
         imgs.hashCode ^
         name.hashCode ^
         oldOwner.hashCode ^

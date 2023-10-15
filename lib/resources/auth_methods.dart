@@ -50,14 +50,16 @@ class AuthMethods {
           state.isNotEmpty &&
           country.isNotEmpty &&
           (zipCode >= 100000 && zipCode <= 999999)) {
+        print(1);
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
-
+        print(2);
         String profilePicUrl = await StorageMethods().uploadImageToStorage(
             childName: "ProfilePics", file: profilePicFile, isItem: false);
+        print(3);
         String backCoverPicUrl = await StorageMethods().uploadImageToStorage(
             childName: "BackCoverPics", file: backCoverPicFile, isItem: false);
-
+        print(4);
         model.User user = model.User(
           userName: userName,
           firstName: firstName,
@@ -79,13 +81,15 @@ class AuthMethods {
           itemsDonated: [],
           itemsForDonation: [],
         );
-
+        print(5);
         // print(user);
         var uploadUser = user.toMap();
+
         await _firestore
             .collection("users")
             .doc(cred.user!.uid)
             .set(uploadUser);
+
         res = "success";
       }
     } catch (e) {
